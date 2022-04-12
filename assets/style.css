@@ -1,0 +1,25 @@
+.bg-main {
+    background-color: #5cdb95;
+}
+
+.font-1 {
+    font-family: "Ramaraja", serif;
+    color: #edf5e1;
+}
+
+.font-2 {
+    font-family: "Rancho", cursive;
+    color: #edf5e1;
+}
+
+a[role="button"] {
+    font-family: "Reem Kufi", sans-serif;
+    color: white;
+    font-size: 26px;
+}
+
+.btton {
+    border-radius: 15px;
+    padding: 0.5em;
+    background-color: #05386b;
+}
