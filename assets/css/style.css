@@ -1,5 +1,17 @@
-.bg-main {
+body {
     background-color: #5cdb95;
+}
+
+.bg-second {
+    background-color: #379683;
+}
+
+.text-small {
+    font-size: 85%;
+}
+
+.dropdown-toggle {
+    outline: 0;
 }
 
 .font-1 {
@@ -10,12 +22,6 @@
 .font-2 {
     font-family: "Rancho", cursive;
     color: #edf5e1;
-}
-
-a[role="button"] {
-    font-family: "Reem Kufi", sans-serif;
-    color: white;
-    font-size: 26px;
 }
 
 .btton {
