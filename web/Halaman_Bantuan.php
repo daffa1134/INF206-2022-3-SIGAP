@@ -54,16 +54,16 @@
 
             <ul class="list-unstyled menu-elements mt-5">
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-home"></i> Home</a>
+                    <a class="scroll-link mb-2" href="./UserHome.php"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-info-circle"></i> Tentang</a>
+                    <a class="scroll-link mb-2" href="./Halaman_Tentang.php"><i class="fas fa-info-circle"></i> Tentang</a>
                 </li>
                 <li class="active">
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-question-circle"></i> Bantuan</a>
+                    <a class="scroll-link mb-2" href=""><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
