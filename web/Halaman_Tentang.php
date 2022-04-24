@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bantuan</title>
+    <title>Tentang</title>
 
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -72,18 +72,12 @@
         <!-- ISi konten -->
         <div class="container display-flex">
             <div class="kotak">
-                <h1>BANTUAN</h1>
-                <p>Ada masalah?</p>
-                <p>Silahkan hubungi kami di e-mail berikut!</p>
-
-                <div class="row mt-5 justify-content-center">
-                    <div class="col-sm-1 me-2">
-                        <img class="ms-2 mb-1" src="../assets/img/email.png" alt="email" style="width: 20px;">
-                    </div>
-                    <div class="col-sm-4 mt-1" style="margin: -2.5rem;">
-                        <p>sigap@gmail.com</p>
-                    </div>
-                </div>
+               <h1>TENTANG</h1>
+               <p>SIGAP adalah aplikasi web-based yang</p>
+               <p>diperuntukkan bagi pihak apotek dan pasien.</p>
+               <p>SIGAP menyediakan informasi dokter di dekat</p>
+               <p>lokasi pasien, sehingga dokter tersebut bisa </p>
+               <p>dihubungi langsung oleh pasien.</p>
             </div>
         </div>
     </div>

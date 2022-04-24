@@ -1,0 +1,13 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 670px;
+}

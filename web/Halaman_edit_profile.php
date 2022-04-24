@@ -5,18 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bantuan</title>
+    <title>Test Sidebar</title>
 
     <!-- CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link rel="stylesheet" href="../assets/css/jquery.mCustomScrollbar.min.css" />
     <link rel="stylesheet" href="../assets/css/styleother.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/help.css">
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ramaraja&family=Rancho&family=Roboto&family=Sora:wght@600&display=swap" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="shortcut icon" href="../assets/ico/healthcare.png" type="image/x-icon" />
@@ -53,13 +49,13 @@
             </div>
 
             <ul class="list-unstyled menu-elements mt-5">
-                <li>
+                <li class="active">
                     <a class="scroll-link mb-2" href="#"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li>
                     <a class="scroll-link mb-2" href="#"><i class="fas fa-info-circle"></i> Tentang</a>
                 </li>
-                <li class="active">
+                <li>
                     <a class="scroll-link mb-2" href="#"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
@@ -70,21 +66,95 @@
         <!-- End sidebar -->
 
         <!-- ISi konten -->
-        <div class="container display-flex">
-            <div class="kotak">
-                <h1>BANTUAN</h1>
-                <p>Ada masalah?</p>
-                <p>Silahkan hubungi kami di e-mail berikut!</p>
-
-                <div class="row mt-5 justify-content-center">
-                    <div class="col-sm-1 me-2">
-                        <img class="ms-2 mb-1" src="../assets/img/email.png" alt="email" style="width: 20px;">
-                    </div>
-                    <div class="col-sm-4 mt-1" style="margin: -2.5rem;">
-                        <p>sigap@gmail.com</p>
-                    </div>
-                </div>
-            </div>
+        <h1>Edit Profile</h1>
+        <div class="container mt-3">
+        <div class="container">
+<div class="row gutters">
+<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="account-settings">
+			<div class="user-profile">
+				<div class="user-avatar">
+					<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+				</div>
+				<h5 class="user-name">Sofia wulanda</h5>
+				<h6 class="user-email">sofia@gmail.com</h6>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<h6 class="mb-2 text-primary">Personal Details</h6>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="Nama">Nama</label>
+					<input type="text" class="form-control" id="Nama" placeholder="Enter Nama">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="eMail">Email</label>
+					<input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="phone">Phone</label>
+					<input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+			</div>
+		</div>
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<h6 class="mt-3 mb-2 text-primary">Address</h6>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="Street">Street</label>
+					<input type="name" class="form-control" id="Street" placeholder="Enter Street">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="ciTy">City</label>
+					<input type="name" class="form-control" id="ciTy" placeholder="Enter City">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="sTate">State</label>
+					<input type="text" class="form-control" id="sTate" placeholder="Enter State">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="zIp">Zip Code</label>
+					<input type="text" class="form-control" id="zIp" placeholder="Zip Code">
+				</div>
+			</div>
+		</div>
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="text-right">
+					<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+					<button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
         </div>
     </div>
     <!-- End Wrapper -->
