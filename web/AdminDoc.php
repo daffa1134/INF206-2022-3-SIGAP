@@ -107,7 +107,7 @@
             <!-- Tombol tambah dokter -->
             <div class="row justify-content-end">
                 <div class="col-1 align-self-end">
-                    <a class="btn btn-success" href="#" role="button">Tambah</a>
+                    <a class="btn btn-success" href="./TambahDokter.php" role="button">Tambah</a>
                 </div>
             </div>
         </div>
