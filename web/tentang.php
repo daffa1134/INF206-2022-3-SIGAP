@@ -5,18 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bantuan</title>
+    <title>Test Sidebar</title>
 
     <!-- CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link rel="stylesheet" href="../assets/css/jquery.mCustomScrollbar.min.css" />
     <link rel="stylesheet" href="../assets/css/styleother.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/help.css">
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ramaraja&family=Rancho&family=Roboto&family=Sora:wght@600&display=swap" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="shortcut icon" href="../assets/ico/healthcare.png" type="image/x-icon" />
@@ -53,13 +49,13 @@
             </div>
 
             <ul class="list-unstyled menu-elements mt-5">
-                <li>
+                <li class="active">
                     <a class="scroll-link mb-2" href="#"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li>
                     <a class="scroll-link mb-2" href="#"><i class="fas fa-info-circle"></i> Tentang</a>
                 </li>
-                <li class="active">
+                <li>
                     <a class="scroll-link mb-2" href="#"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
@@ -70,21 +66,10 @@
         <!-- End sidebar -->
 
         <!-- ISi konten -->
-        <div class="container display-flex">
-            <div class="kotak">
-                <h1>BANTUAN</h1>
-                <p>Ada masalah?</p>
-                <p>Silahkan hubungi kami di e-mail berikut!</p>
-
-                <div class="row mt-5 justify-content-center">
-                    <div class="col-sm-1 me-2">
-                        <img class="ms-2 mb-1" src="../assets/img/email.png" alt="email" style="width: 20px;">
-                    </div>
-                    <div class="col-sm-4 mt-1" style="margin: -2.5rem;">
-                        <p>sigap@gmail.com</p>
-                    </div>
-                </div>
-            </div>
+        <div class="container mt-3">
+           <form action="">
+               <p>SIGAP adalah aplikasi web-based yang diperuntukkan bagi pihak apotek dan pasien. SIGAP menyediakan informasi dokter di dekat lokasi pasien, sehingga dokter tersebut bisa dihubungi langsung oleh pasien.</p>
+           </form> 
         </div>
     </div>
     <!-- End Wrapper -->

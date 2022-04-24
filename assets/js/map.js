@@ -1,4 +1,4 @@
-let map;
+let map, namaApotek = ["Apotek Saya"];
 
 function initMap() {
     // The map, centered at Banda Aceh
@@ -14,9 +14,42 @@ function initMap() {
     infoWindow = new google.maps.InfoWindow();
 
     const yourLocation = document.createElement("div");
+    const save = document.createElement("div");
     findYourLoc(yourLocation, map);
+    saveButton(save, map);
 
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(yourLocation);
+    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(save);
+}
+
+function saveButton(controlDiv, map) {
+    const controlUI = document.createElement("div");
+
+    controlUI.style.backgroundColor = "#fff";
+    controlUI.style.border = "2px solid #fff";
+    controlUI.style.borderRadius = "3px";
+    controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+    controlUI.style.cursor = "pointer";
+    controlUI.style.marginLeft = "8px";
+    controlUI.style.textAlign = "center";
+    controlUI.title = "Click to recenter the map";
+    controlDiv.appendChild(controlUI);
+
+    // Set CSS for the control interior.
+    const controlText = document.createElement("div");
+
+    controlText.style.color = "rgb(25,25,25)";
+    controlText.style.fontFamily = "Roboto,Arial,sans-serif";
+    controlText.style.fontSize = "16px";
+    controlText.style.lineHeight = "38px";
+    controlText.style.paddingLeft = "5px";
+    controlText.style.paddingRight = "5px";
+    controlText.innerHTML = "Save Location";
+    controlUI.appendChild(controlText);
+
+    controlUI.addEventListener("click", () => {
+        alert("Save this location?");
+    });
 }
 
 function findYourLoc(controlDiv, map) {
@@ -46,7 +79,7 @@ function findYourLoc(controlDiv, map) {
                     // Menuju current position
                     map.setCenter(pos);
 
-                    addMyMarker(pos);
+                    addMyMarker(map, pos, namaApotek[0]);
                 },
                 () => {
                     handleLocationError(true, infoWindow, map.getCenter());
@@ -64,7 +97,7 @@ function findYourLoc(controlDiv, map) {
         infoWindow.open(map);
     }
 
-    function addMyMarker(position) {
+    function addMyMarker(map, position, namaApotek) {
         marker = new google.maps.Marker({
             position,
             map,
@@ -74,6 +107,11 @@ function findYourLoc(controlDiv, map) {
                 scaledSize: new google.maps.Size(40, 40),
             },
             animation: google.maps.Animation.DROP,
+        });
+
+        marker.addListener("click", () => {
+            infoWindow.setContent(namaApotek);
+            infoWindow.open(map, marker);
         });
     }
 }
