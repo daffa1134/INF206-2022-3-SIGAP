@@ -54,16 +54,16 @@
 
             <ul class="list-unstyled menu-elements mt-5">
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-home"></i> Home</a>
-                </li>
-                <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-info-circle"></i> Tentang</a>
+                    <a class="scroll-link mb-2" href="./UserHome.php"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li class="active">
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-question-circle"></i> Bantuan</a>
+                    <a class="scroll-link mb-2" href=""><i class="fas fa-info-circle"></i> Tentang</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./Halaman_Bantuan.php"><i class="fas fa-question-circle"></i> Bantuan</a>
+                </li>
+                <li>
+                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
@@ -72,12 +72,14 @@
         <!-- ISi konten -->
         <div class="container display-flex">
             <div class="kotak">
-               <h1>TENTANG</h1>
-               <p>SIGAP adalah aplikasi web-based yang</p>
-               <p>diperuntukkan bagi pihak apotek dan pasien.</p>
-               <p>SIGAP menyediakan informasi dokter di dekat</p>
-               <p>lokasi pasien, sehingga dokter tersebut bisa </p>
-               <p>dihubungi langsung oleh pasien.</p>
+                <h1>TENTANG</h1>
+                <div style="margin-top: -2rem;">
+                    <p>SIGAP adalah aplikasi web-based yang</p>
+                    <p>diperuntukkan bagi pihak apotek dan pasien.</p>
+                    <p>SIGAP menyediakan informasi dokter di dekat</p>
+                    <p>lokasi pasien, sehingga dokter tersebut bisa </p>
+                    <p>dihubungi langsung oleh pasien.</p>
+                </div>
             </div>
         </div>
     </div>

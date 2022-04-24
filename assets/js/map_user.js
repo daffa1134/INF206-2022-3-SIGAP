@@ -1,6 +1,11 @@
 let map,
-    namaApotek = ["Apotek Laris"];
-const apotek = [{ lat: 5.562762993736273, lng: 95.32864104874757 }];
+    markers = [],
+    namaApotek = ["Apotek Laris", "Apotek Sejahtera", "Apotek Mangga"];
+const apotek = [
+    { lat: 5.562762993736273, lng: 95.32864104874757 },
+    { lat: 5.5607209257230545, lng: 95.32791597386056 },
+    { lat: 5.560118305951542, lng: 95.32770537603727 },
+];
 
 function initMap() {
     // The map, centered at Banda Aceh
@@ -15,38 +20,15 @@ function initMap() {
 
     infoWindow = new google.maps.InfoWindow();
 
-    // Menampilkan default marker
-    defaultMarker(map, apotek[0], namaApotek[0]);
-
     const yourLocation = document.createElement("div");
-    const save = document.createElement("div");
-    findYourLoc(yourLocation, map);
-    saveButton(save);
 
+    findYourLoc(yourLocation, map);
 
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(yourLocation);
-    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(save);
 }
 
-function defaultMarker(map, pos, namaApotek) {
-    defMarker = new google.maps.Marker({
-        position: pos,
-        map: map,
-        icon: {
-            url: "../assets/ico/my-location.png",
-            scaledSize: new google.maps.Size(40, 40),
-        },
-    });
-
-    defMarker.addListener("click", () => {
-        infoWindow.setContent(namaApotek);
-        infoWindow.open(map, defMarker);
-    });
-}
-
-function saveButton(controlDiv) {
-    // Menambahkan styling basic pada button
-    const controlUI = addBasicCssButton("Click to Save This Location");
+function showApotek(controlDiv) {
+    const controlUI = addButton("Click to Show Nearest Clinic");
     controlUI.style.marginLeft = "8px";
     controlDiv.appendChild(controlUI);
 
@@ -59,16 +41,13 @@ function saveButton(controlDiv) {
     controlText.style.lineHeight = "38px";
     controlText.style.paddingLeft = "5px";
     controlText.style.paddingRight = "5px";
-    controlText.innerHTML = "Save Location";
+    controlText.innerHTML = "Temukan Apotek";
     controlUI.appendChild(controlText);
 
-    // Menyimpan lokasi sekarang
-    controlUI.addEventListener("click", () => {
-        alert("Save this location?");
-    });
+    return controlUI;
 }
 
-function addBasicCssButton(msg) {
+function addButton(msg) {
     // Set CSS
     const ui = document.createElement("div");
     ui.style.backgroundColor = "#fff";
@@ -82,7 +61,7 @@ function addBasicCssButton(msg) {
 
 function findYourLoc(controlDiv, map) {
     // Set CSS
-    const controlUI = addBasicCssButton("Click to find your location");
+    const controlUI = addButton("Click to find your location");
     controlUI.style.borderRadius = "180px";
     controlUI.style.marginRight = "8px";
     controlDiv.appendChild(controlUI);
@@ -103,6 +82,13 @@ function findYourLoc(controlDiv, map) {
                     map.setCenter(pos);
 
                     addMyMarker(map, pos, namaApotek[0]);
+
+                    const nearApotek = document.createElement("div");
+                    const test = showApotek(nearApotek);
+                    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(nearApotek);
+                    test.addEventListener("click", () => {
+                        drop();
+                    });
                 },
                 () => {
                     handleLocationError(true, infoWindow, map.getCenter());
@@ -120,10 +106,10 @@ function findYourLoc(controlDiv, map) {
         infoWindow.open(map);
     }
 
-    function addMyMarker(map, pos, namaApotek) {
-        marker = new google.maps.Marker({
-            position: pos,
-            map: map,
+    function addMyMarker(map, position, namaApotek) {
+        const marker = new google.maps.Marker({
+            position,
+            map,
             title: "You Are Here",
             icon: {
                 url: "../assets/ico/my-location.png",
@@ -136,6 +122,34 @@ function findYourLoc(controlDiv, map) {
             infoWindow.setContent(namaApotek);
             infoWindow.open(map, marker);
         });
+    }
+
+    function drop() {
+        clearMarkers();
+
+        for (let i = 0; i < apotek.length; i++) {
+            addMarkerWithTimeout(apotek[i], i * 200);
+        }
+    }
+
+    function addMarkerWithTimeout(position, timeout) {
+        window.setTimeout(() => {
+            markers.push(
+                new google.maps.Marker({
+                    position: position,
+                    map,
+                    animation: google.maps.Animation.DROP,
+                })
+            );
+        }, timeout);
+    }
+
+    function clearMarkers() {
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+
+        markers = [];
     }
 }
 
