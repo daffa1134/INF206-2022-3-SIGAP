@@ -66,7 +66,7 @@
                     <a class="scroll-link mb-2" href="#"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
@@ -107,7 +107,7 @@
             <!-- Tombol tambah dokter -->
             <div class="row justify-content-end">
                 <div class="col-1 align-self-end">
-                    <a class="btn btn-success" href="#" role="button">Tambah</a>
+                    <a class="btn btn-success" href="./TambahDokter.php" role="button">Tambah</a>
                 </div>
             </div>
         </div>
