@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,body {
+    background: #5cdb95;
+    display : grid;
+    height: 100%;
+    place-items: center;
+}
+::selection {
+    background: #92e2b6;
+    color: #fff;
+}
+.search-box{
+    position : relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+}
+
+.search-box.active{
+    width: 350px;
+}
+.search-box input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    background: #fff;
+    padding: 0px 60px 0px 20px;
+    font-size: 18;
+    opacity: 0;
+  
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.search-box input.active{
+    opacity: 1;
+}
+.search-box input::palaceholder{
+    color: #a6a6a6;
+}
