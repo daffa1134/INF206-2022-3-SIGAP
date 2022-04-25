@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Sidebar</title>
+    <title>Edit Profile</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap" />
@@ -66,20 +66,20 @@
         <!-- End sidebar -->
 
         <!-- ISi konten -->
-        <h1>Edit Profile</h1>
+        <h1><center> Edit Profile</center></h1>
         <div class="container mt-3">
         <div class="container">
 <div class="row gutters">
 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 <div class="card h-100">
-	<div class="card-body">
+	<div class="center-body">
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
 					<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
 				</div>
-				<h5 class="user-name">Sofia wulanda</h5>
-				<h6 class="user-email">sofia@gmail.com</h6>
+				<h5 class="user-name"><center>reza alamsyah</center></h5>
+				<h6 class="user-email"><center>reza@gmail.com</center></h6>
 			</div>
 		</div>
 	</div>
@@ -119,32 +119,28 @@
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
-					<label for="Street">Street</label>
-					<input type="name" class="form-control" id="Street" placeholder="Enter Street">
+					<label for="Jalan">Jalan</label>
+					<input type="name" class="form-control" id="Jalan" placeholder="Enter Jalan">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
-					<label for="ciTy">City</label>
-					<input type="name" class="form-control" id="ciTy" placeholder="Enter City">
+					<label for="ciTy">Kota</label>
+					<input type="name" class="form-control" id="Kota" placeholder="Enter Kota">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
-					<label for="sTate">State</label>
-					<input type="text" class="form-control" id="sTate" placeholder="Enter State">
+					<label for="sTate">Negara</label>
+					<input type="text" class="form-control" id="Negara" placeholder="Enter Negara">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="zIp">Zip Code</label>
-					<input type="text" class="form-control" id="zIp" placeholder="Zip Code">
-				</div>
 			</div>
 		</div>
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-				<div class="text-right">
+				<div class="text-center">
 					<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
 					<button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
 				</div>
