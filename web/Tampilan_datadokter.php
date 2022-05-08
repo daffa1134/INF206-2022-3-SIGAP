@@ -30,13 +30,13 @@ include('Koneksi.php');
 						//menampilkan data perulangan
 						echo '
 						<tr>
-							<td>'.$data['Nama'].'</td>
-							<td>'.$data['Spesialist'].'</td>
-							<td>'.$data['Jam kerja'].'</td>
+							<td>'.$data['nama'].'</td>
+							<td>'.$data['spesialis'].'</td>
+							<td>'.$data['jam_kerja'].'</td>
 							<td>'.$data['ruang'].'</td>
 							<td>
-								<a href="index.php?page=edit_mhs&Nim='.$data['Nama'].'" class="btn btn-secondary btn-sm">Edit</a>
-								<a href="delete.php?Nim='.$data['Nama'].'" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
+								<a href="index.php?page=edit_mhs&Nim='.$data['nama'].'" class="btn btn-secondary btn-sm">Edit</a>
+								<a href="delete.php?Nim='.$data['nama'].'" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
 							</td>
 						</tr>
 						';

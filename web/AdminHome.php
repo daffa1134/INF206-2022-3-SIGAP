@@ -72,17 +72,23 @@
 
         <!-- ISi konten -->
         <div class="container-fluid w-auto h-auto">
+            <!-- Tombol simpan lokasi -->
+            <button type="button" class="btn" id="save" title="Click to save your location" style="margin-left: 8px;">Save Location</button>
+            <!-- Tombol cari lokasi -->
+            <button type="button" class="btn" id="find" title="Click to find your location" style="margin-right: 8px;">
+                <img src="../assets/ico/precision.png" alt="Find Location" style="width: 40px;">
+            </button>
             <div id="map"></div>
         </div>
     </div>
     <!-- End Wrapper -->
+
     <!-- Javascript -->
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSSO6fRI2XwFLFnHJqjYLBwPiwWkuu48&callback=initMap"></script>
     <script src="../assets/js/scripts.js"></script>
-    <script src="../assets/js/map.js"></script>
-
+    <script src="../assets/js/adminMap.js"></script>
 </body>
 
 </html>

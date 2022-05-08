@@ -73,9 +73,10 @@
         <!-- End sidebar -->
 
         <!-- ISi konten -->
-        <div class="container bg-light mt-3" style="border-radius: 15px; padding: 30px; font-family: 'Roboto', sans-serif;">
+
+        <div class="container bg-light mt-3 theFont" style="border-radius: 15px; padding: 30px; font-family: 'Roboto', sans-serif;">
             <h2>Data Dokter Apotek Laris</h2>
-            <div style="background-color: #F2EEEE; border-radius: 10px">
+            <div class="borderTen" style="background-color: #F2EEEE;">
                 <table class="table text-center table-borderless">
                     <thead>
                         <th class="col-1">No</th>
@@ -96,27 +97,134 @@
                             <td>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                     <a class="btn btn-primary" href="#" role="button">Edit</a>
-                                    <a class="btn btn-danger" href="#" role="button">Hapus</a>
+                                    <a class="btn btn-danger" role="button" data-bs-toggle="modal" data-bs-target="#confirmDelete">Hapus</a>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
             <!-- Tombol tambah dokter -->
             <div class="row justify-content-end">
-                <div class="col-1 align-self-end">
-                    <a class="btn btn-success" href="./TambahDokter.php" role="button">Tambah</a>
+                <div class="text-end">
+                    <button class="btn btn-success" role="button" data-bs-toggle="modal" data-bs-target="#modalAddDokter">Tambah</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form untuk tambah dokter -->
+        <div class="modal fade" id="modalAddDokter" tabindex="-1" aria-labelledby="modalForm" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bgThird" style="border-radius: 20px;">
+                    <!-- Modal item -->
+                    <div class="modal-body">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                            <div class="carousel-indicators gap-1">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="btn active rounded-circle" disabled aria-current="true" aria-label="Slide 1" style="width: 20px; height: 20px;"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="btn rounded-circle" disabled aria-label="Slide 2" style="width: 20px; height: 20px;"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <!-- Halaman 1 -->
+                                <form action="#" method="post">
+                                    <div class="carousel-item active">
+                                        <!-- Isi Form -->
+                                        <div class="col-10 mx-auto mt-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control borderTen" id="namaDokter" placeholder="Nama Dokter">
+                                                <label for="namaDokter">Nama Dokter</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control borderTen" id="nip" placeholder="NIP">
+                                                <label for="nip">NIP</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control borderTen" id="email" placeholder="E-Mail" required>
+                                                <label for="email">E-Mail</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control borderTen" id="alamat" placeholder="Alamat">
+                                                <label for="alamat">Alamat</label>
+                                            </div>
+                                        </div>
+                                        <!-- Tombol penutup -->
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-bottom: 60px; margin-top: 60px">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">BATAL</button>
+                                            <button type="button" class="btn btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">LANJUT</button>
+                                        </div>
+                                    </div>
+                                    <!-- Halaman 2 -->
+                                    <div class="carousel-item">
+                                        <!-- Isi form -->
+                                        <div class="col-10 mx-auto mt-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control borderTen" id="ruangan" placeholder="Ruangan">
+                                                <label for="ruangan">Ruangan</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control borderTen" id="noHp" placeholder="No. HP">
+                                                <label for="noHp">No. HP</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control borderTen" id="spesialis" placeholder="Spesialis">
+                                                <label for="spesialis">Spesialis</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-auto justify-content-center">
+                                            <div class="col-5" style="padding: 0px 10px 0px 0px;">
+                                                <div class="form-floating">
+                                                    <input type="time" class="form-control borderTen" id="jamMulai" placeholder="Jam Mulai">
+                                                    <label for="jamMulai">Jam Mulai</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-5" style="padding: 0px 0px 0px 10px;">
+                                                <div class="form-floating">
+                                                    <input type="time" class="form-control borderTen" id="jamSelesai" placeholder="Jam Selesai">
+                                                    <label for="jamSelesai">Jam Selesai</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Tombol penutup -->
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-bottom: 60px; margin-top: 60px">
+                                            <button type="button" class="btn btn-danger" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">KEMBALI</button>
+                                            <button type="submit" class="btn btn-success">SELESAI</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pop up konfirmasi hapus dokter -->
+        <div class="modal fade" id="confirmDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bgThird" style="border-radius: 20px;">
+                    <div class="modal-body">
+                        <form action="#" method="post">
+                            <div class="text-center" style="color: white;">
+                                <p style="font-size: 32px"><strong>KONFIRMASI</strong></p>
+                                <p style="font-size: 24px">Apakah anda benar-benar<br>ingin menghapusnya?</p>
+                            </div>
+                            <input type="hidden" name="id">
+                        </form>
+                    </div>
+                    <div class="d-grid mb-4 gap-2 d-md-flex justify-content-md-center">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">BATAL</button>
+                        <button type="submit" class="btn btn-danger">IYA</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Wrapper -->
+
     <!-- Javascript -->
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="../assets/js/scripts.js"></script>
+    <script src="../assets/js/modal.js"></script>
 </body>
 
 </html>
