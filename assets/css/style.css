@@ -6,6 +6,14 @@ body {
     background-color: #379683;
 }
 
+.bgThird {
+    background-color: #05386b;
+}
+
+.borderTen {
+    border-radius: 10px;
+}
+
 .text-small {
     font-size: 85%;
 }
