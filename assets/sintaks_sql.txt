@@ -1,0 +1,45 @@
+Jalankan sintaks berikut ini di mysql
+
+1. Membuat database
+CREATE DATABASE sigap;
+
+2. Membuat tabel user
+CREATE TABLE user (
+    id INT NOT NULL AUTO_INCREMENT,
+    nama_lengkap VARCHAR(50),
+    email VARCHAR(30) UNIQUE,
+    password VARCHAR(16),
+    is_admin INT(1) DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
+3. Membuat tabel admin
+CREATE TABLE admin (
+    id INT NOT NULL AUTO_INCREMENT,
+    nama VARCHAR(50),
+    email VARCHAR(30) UNIQUE,
+    password VARCHAR(16),
+    is_admin INT(1) DEFAULT 1,
+    nama_apotek VARCHAR(50),
+    longitude VARCHAR(20),
+    latitude VARCHAR(20),
+    PRIMARY KEY (id)
+);
+
+4. Membuat tabel data dokter
+CREATE TABLE dokter (
+    id INT NOT NULL AUTO_INCREMENT,
+    id_apotek INT,
+    nama VARCHAR(50),
+    nip VARCHAR(18),
+    email VARCHAR(30),
+    alamat VARCHAR(50),
+    no_telp VARCHAR(15),
+    ruangan VARCHAR(50),
+    no_hp VARCHAR(15),
+    spesialis VARCHAR(50),
+    jam_mulai VARCHAR(10),
+    jam_selesai VARCHAR(10),
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_apotek) REFERENCES admin(id)
+);

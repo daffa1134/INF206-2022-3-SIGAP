@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../assets/css/styleother.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/map.css">
+    <link rel="stylesheet" href="../assets/css/mapbutton.css">
 
     <!-- Icon -->
     <link rel="shortcut icon" href="../assets/ico/healthcare.png" type="image/x-icon" />
@@ -69,6 +70,10 @@
 
         <!-- ISi konten -->
         <div class="container-fluid w-auto h-auto">
+            <button type="button" class="btn" id="search" title="Click to find apotek" style="margin-left: 8px;">Temukan Apotek</button>
+            <button type="button" class="btn" id="find" title="Click to find your location" style="margin-right: 8px;">
+                <img src="../assets/ico/precision.png" alt="Find Location" style="width: 40px;">
+            </button>
             <div id="map"></div>
         </div>
     </div>
@@ -78,7 +83,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSSO6fRI2XwFLFnHJqjYLBwPiwWkuu48&callback=initMap"></script>
     <script src="../assets/js/scripts.js"></script>
-    <script src="../assets/js/map_user.js"></script>
+    <script src="../assets/js/userMap.js"></script>
 
 </body>
 
