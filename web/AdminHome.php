@@ -73,11 +73,28 @@
         <!-- ISi konten -->
         <div class="container-fluid w-auto h-auto">
             <!-- Tombol simpan lokasi -->
-            <button type="button" class="btn" id="save" title="Click to save your location" style="margin-left: 8px;">Save Location</button>
+            <button type="button" class="btn" id="save" data-bs-toggle="modal" data-bs-target="#saveLoc" title="Click to save your location" style="margin-left: 8px;">Save Location</button>
             <!-- Tombol cari lokasi -->
             <button type="button" class="btn" id="find" title="Click to find your location" style="margin-right: 8px;">
                 <img src="../assets/ico/precision.png" alt="Find Location" style="width: 40px;">
             </button>
+
+            <!-- Modal popup save-->
+            <div class="modal fade" id="saveLoc" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bgThird" style="border-radius: 20px;">
+                        <div class="modal-body text-center"> 
+                            <p style="font-size: 24px; color: white;">Save this location?</p>
+                        </div>
+                        <div class="d-grid mb-4 gap-2 d-md-flex justify-content-md-center">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NO</button>
+                            <button type="submit" class="btn btn-success">YES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div id="map"></div>
         </div>
     </div>

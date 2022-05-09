@@ -36,9 +36,6 @@ function initMap() {
                     if (clicked == 0) {
                         map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(save);
                     }
-                    save.addEventListener("click", () => {
-                        alert("Save this location?");
-                    });
                     map.setCenter(pos);
                     clicked = 1;
                 },
