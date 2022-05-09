@@ -5,14 +5,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Sidebar</title>
+    <title>Tentang</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link rel="stylesheet" href="../assets/css/jquery.mCustomScrollbar.min.css" />
     <link rel="stylesheet" href="../assets/css/styleother.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/help.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ramaraja&family=Rancho&family=Roboto&family=Sora:wght@600&display=swap" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="shortcut icon" href="../assets/ico/healthcare.png" type="image/x-icon" />
@@ -49,27 +53,34 @@
             </div>
 
             <ul class="list-unstyled menu-elements mt-5">
+                <li>
+                    <a class="scroll-link mb-2" href="./UserHome.php"><i class="fas fa-home"></i> Home</a>
+                </li>
                 <li class="active">
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-home"></i> Home</a>
+                    <a class="scroll-link mb-2" href=""><i class="fas fa-info-circle"></i> Tentang</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-info-circle"></i> Tentang</a>
+                    <a class="scroll-link mb-2" href="./Halaman_Bantuan.php"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-question-circle"></i> Bantuan</a>
-                </li>
-                <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
         <!-- End sidebar -->
 
         <!-- ISi konten -->
-        <div class="container mt-3">
-           <form action="">
-               <p>SIGAP adalah aplikasi web-based yang diperuntukkan bagi pihak apotek dan pasien. SIGAP menyediakan informasi dokter di dekat lokasi pasien, sehingga dokter tersebut bisa dihubungi langsung oleh pasien.</p>
-           </form> 
+        <div class="container display-flex">
+            <div class="kotak">
+                <h1>TENTANG</h1>
+                <div style="margin-top: -2rem;">
+                    <p>SIGAP adalah aplikasi web-based yang</p>
+                    <p>diperuntukkan bagi pihak apotek dan pasien.</p>
+                    <p>SIGAP menyediakan informasi dokter di dekat</p>
+                    <p>lokasi pasien, sehingga dokter tersebut bisa </p>
+                    <p>dihubungi langsung oleh pasien.</p>
+                </div>
+            </div>
         </div>
     </div>
     <!-- End Wrapper -->
