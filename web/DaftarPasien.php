@@ -1,6 +1,6 @@
 <?php
 
-include 'config.php';
+include 'Koneksi.php';
 
 error_reporting(0);
 
