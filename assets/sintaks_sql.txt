@@ -4,42 +4,72 @@ Jalankan sintaks berikut ini di mysql
 CREATE DATABASE sigap;
 
 2. Membuat tabel user
-CREATE TABLE user (
+CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
     nama_lengkap VARCHAR(50),
     email VARCHAR(30) UNIQUE,
-    password VARCHAR(16),
+    password VARCHAR(255),
+    link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3011/3011270.png",
     is_admin INT(1) DEFAULT 0,
     PRIMARY KEY (id)
 );
 
 3. Membuat tabel admin
-CREATE TABLE admin (
+CREATE TABLE admins (
     id INT NOT NULL AUTO_INCREMENT,
     nama VARCHAR(50),
     email VARCHAR(30) UNIQUE,
-    password VARCHAR(16),
+    password VARCHAR(255),
     is_admin INT(1) DEFAULT 1,
     nama_apotek VARCHAR(50),
+    link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
     longitude VARCHAR(20),
     latitude VARCHAR(20),
     PRIMARY KEY (id)
 );
 
 4. Membuat tabel data dokter
-CREATE TABLE dokter (
+CREATE TABLE doctors (
     id INT NOT NULL AUTO_INCREMENT,
     id_apotek INT,
     nama VARCHAR(50),
     nip VARCHAR(18),
     email VARCHAR(30),
     alamat VARCHAR(50),
-    no_telp VARCHAR(15),
     ruangan VARCHAR(50),
     no_hp VARCHAR(15),
     spesialis VARCHAR(50),
+    link_pp TEXT DEFAULT "https://i.pinimg.com/originals/e3/7e/14/e37e14e207070d62cfc4d0b050f3ad91.png",
     jam_mulai VARCHAR(10),
     jam_selesai VARCHAR(10),
     PRIMARY KEY (id),
-    FOREIGN KEY (id_apotek) REFERENCES admin(id)
+    FOREIGN KEY (id_apotek) REFERENCES admins(id)
 );
+
+5. Insert data admin
+INSERT INTO admins (nama, email, password, nama_apotek) VALUES
+    ("Yuda", "yuda@gmail.com", "12345678", "Apotek Laris"),
+    ("Dey", "dey@gmail.com", "12345678", "Apotek Rasi"),
+    ("Arip", "arip@gmail.com", "12345678", "Apotek Sejahtera"),
+    ("Alan", "alan@gmail.com", "12345678", "Apotek Sehat")
+;
+
+6. Insert data dokter
+INSERT INTO doctors (id_apotek, nama, nip, email, alamat, ruangan, no_hp, spesialis, jam_mulai, jam_selesai) VALUES
+    (1, "Dr. Asep", "1234567890123", "asep@gmail.com", "Jl. Asep No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (1, "Dr. Budi", "1234567890123", "budi@gmail.com", "Jl. Budi No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (1, "Dr. Caca", "1234567890123", "caca@gmail.com", "Jl. Caca No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (2, "Dr. Dede", "1234567890123", "dede@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (2, "Dr. Eka", "1234567890123", "eka@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Uruologi", "08:00", "16:00"),
+    (3, "Dr. Ginting", "1234567890123", "sinting@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Uruologi", "08:00", "16:00"),
+    (3, "Dr. Hap", "1234567890123", "hap@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (4, "Dr. Sigit", "1234567890123", "slebew@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (4, "Dr. Putri", "1234567890123", "putri@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00")
+;
+
+7. Insert data users
+INSERT INTO users (nama_lengkap, email, password) VALUES
+    ("Agung", "agung@gmail.com", "12345678"),
+    ("Dudul", "dudul@yahool.com", "12345678"),
+    ("Andre", "dre@gmail.com", "12345678")
+;

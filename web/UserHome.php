@@ -36,8 +36,7 @@
                             <img src="../assets/img/pp-example.png" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="./Halaman_edit_profile.php">Profile</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,7 +71,7 @@
         <div class="container-fluid w-auto h-auto">
             <button type="button" class="btn" id="search" title="Click to find apotek" style="margin-left: 8px;">Temukan Apotek</button>
             <button type="button" class="btn" id="find" title="Click to find your location" style="margin-right: 8px;">
-                <img src="../assets/ico/precision.png" alt="Find Location" style="width: 40px;">
+                <img src="../assets/ico/loc.png" alt="Find Location" style="width: 40px;">
             </button>
             <div id="map"></div>
         </div>

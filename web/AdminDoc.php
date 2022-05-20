@@ -1,3 +1,15 @@
+<?php
+require 'AdminController.php';
+
+$admins = query("SELECT * FROM admins WHERE id = 1");
+$doctors = query_banyak("SELECT * FROM doctors WHERE id_apotek = 1");
+
+if (isset($_POST['tambah'])) {
+    tambahDokter($_POST);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,12 +44,11 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                     <a class="btn btn-customized open-menu" href="#" role="button"> <i class="fas fa-bars"></i></a>
                     <div class="dropdown btn-group me-3">
-                        <span class="me-2" style="font-weight: 600;">Firman</span>
+                        <span class="me-2" style="font-weight: 600;"><?= $admins["nama"] ?></span>
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../assets/img/pp-example.png" alt="photo profile" width="32" height="32" class="rounded-circle" />
+                            <img src="<?= $admins["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                         </ul>
                     </div>
@@ -60,10 +71,10 @@
                     <a class="scroll-link mb-2" href=""><i class="fas fa-user-md"></i> Data Dokter</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-info-circle"></i> Tentang</a>
+                    <a class="scroll-link mb-2" href="./Halaman_Tentang_Admin.php"><i class="fas fa-info-circle"></i> Tentang</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="#"><i class="fas fa-question-circle"></i> Bantuan</a>
+                    <a class="scroll-link mb-2" href="./Halaman_Bantuan_Admin.php"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
                     <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
@@ -75,7 +86,7 @@
         <!-- ISi konten -->
 
         <div class="container bg-light mt-3 theFont" style="border-radius: 15px; padding: 30px; font-family: 'Roboto', sans-serif;">
-            <h2>Data Dokter Apotek Laris</h2>
+            <h2>Data Dokter <?= $admins["nama_apotek"] ?></h2>
             <div class="borderTen" style="background-color: #F2EEEE;">
                 <table class="table text-center table-borderless">
                     <thead>
@@ -88,19 +99,29 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Anas Al-Karim</td>
-                            <td>Merpati</td>
-                            <td>18.00-21.00</td>
-                            <td>Jantung</td>
-                            <td>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                    <a class="btn btn-primary" href="#" role="button">Edit</a>
-                                    <a class="btn btn-danger" role="button" data-bs-toggle="modal" data-bs-target="#confirmDelete">Hapus</a>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php if (sizeof($doctors) > 0) : ?>
+                            <?php $i = 1; ?>
+                            <?php foreach ($doctors as $doctor) : ?>
+                                <tr id="<?= $doctor['id'] ?>">
+                                    <td><?= $i ?></td>
+                                    <td><?= $doctor["nama"] ?></td>
+                                    <td><?= $doctor["ruangan"] ?></td>
+                                    <td><?= $doctor["jam_mulai"] . "-" . $doctor["jam_selesai"] ?></td>
+                                    <td><?= $doctor["spesialis"] ?></td>
+                                    <td>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                            <button class="btn btn-primary" role="button">Edit</button>
+                                            <button class="btn btn-danger hapus" role="button" data-bs-toggle="modal" data-bs-target="#confirmDelete">Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php $i++; ?>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <tr>
+                                <td colspan="6" class="text-center"><strong>Tidak ada data</strong></td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -125,68 +146,74 @@
                             </div>
                             <div class="carousel-inner">
                                 <!-- Halaman 1 -->
-                                <form action="#" method="post">
+                                <form id="tambahdoc" name="tambahdoc" class="needs-validation" action="" method="post" novalidate>
                                     <div class="carousel-item active">
                                         <!-- Isi Form -->
-                                        <div class="col-10 mx-auto mt-4">
+                                        <div id="part1" class="col-10 mx-auto mt-4">
+                                            <input type="hidden" name="id_apotek" value="<?= $admins["id"] ?>">
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control borderTen" id="namaDokter" placeholder="Nama Dokter">
+                                                <input type="text" class="form-control borderTen" id="namaDokter" name="nama" placeholder="Nama Dokter" required>
                                                 <label for="namaDokter">Nama Dokter</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control borderTen" id="nip" placeholder="NIP">
+                                                <input type="text" class="form-control borderTen" id="nip" name="nip" placeholder="NIP" required>
                                                 <label for="nip">NIP</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="email" class="form-control borderTen" id="email" placeholder="E-Mail" required>
+                                                <input type="email" class="form-control borderTen" id="email" name="email" placeholder="E-Mail" required>
                                                 <label for="email">E-Mail</label>
+                                                <div id="emailchecker" hidden style="color: red;">
+                                                    <strong>Tulis alamat email yang benar</strong>
+                                                </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control borderTen" id="alamat" placeholder="Alamat">
+                                                <input type="text" class="form-control borderTen" id="alamat" name="alamat" placeholder="Alamat" required>
                                                 <label for="alamat">Alamat</label>
                                             </div>
-                                        </div>
-                                        <!-- Tombol penutup -->
-                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-bottom: 60px; margin-top: 60px">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">BATAL</button>
-                                            <button type="button" class="btn btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">LANJUT</button>
+                                            <!-- Tombol penutup -->
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-bottom: 60px; margin-top: 60px">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">BATAL</button>
+                                                <button id="nextstep" type="button" class="btn btn-success" data-bs-target="#carouselExampleIndicators" onclick="validateForm()" data-bs-slide="">LANJUT</button>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Halaman 2 -->
                                     <div class="carousel-item">
                                         <!-- Isi form -->
-                                        <div class="col-10 mx-auto mt-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control borderTen" id="ruangan" placeholder="Ruangan">
-                                                <label for="ruangan">Ruangan</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control borderTen" id="noHp" placeholder="No. HP">
-                                                <label for="noHp">No. HP</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control borderTen" id="spesialis" placeholder="Spesialis">
-                                                <label for="spesialis">Spesialis</label>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-5" style="padding: 0px 10px 0px 0px;">
-                                                <div class="form-floating">
-                                                    <input type="time" class="form-control borderTen" id="jamMulai" placeholder="Jam Mulai">
-                                                    <label for="jamMulai">Jam Mulai</label>
+                                        <div id="part2">
+                                            <div class="col-10 mx-auto mt-4">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control borderTen" id="ruangan" name="ruangan" placeholder="Ruangan" required>
+                                                    <label for="ruangan">Ruangan</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control borderTen" id="noHp" name="no_hp" placeholder="No. HP">
+                                                    <label for="noHp">No. HP</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control borderTen" id="spesialis" name="spesialis" placeholder="Spesialis" required>
+                                                    <label for="spesialis">Spesialis</label>
                                                 </div>
                                             </div>
-                                            <div class="col-5" style="padding: 0px 0px 0px 10px;">
-                                                <div class="form-floating">
-                                                    <input type="time" class="form-control borderTen" id="jamSelesai" placeholder="Jam Selesai">
-                                                    <label for="jamSelesai">Jam Selesai</label>
+                                            <div class="row mx-auto justify-content-center">
+                                                <div class="col-5" style="padding: 0px 10px 0px 0px;">
+                                                    <div class="form-floating">
+                                                        <input type="time" class="form-control borderTen" id="jamMulai" name="jam_mulai" placeholder="Jam Mulai" required>
+                                                        <label for="jamMulai">Jam Mulai</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-5" style="padding: 0px 0px 0px 10px;">
+                                                    <div class="form-floating">
+                                                        <input type="time" class="form-control borderTen" id="jamSelesai" name="jam_selesai" placeholder="Jam Selesai" required>
+                                                        <label for="jamSelesai">Jam Selesai</label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- Tombol penutup -->
-                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-bottom: 60px; margin-top: 60px">
-                                            <button type="button" class="btn btn-danger" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">KEMBALI</button>
-                                            <button type="submit" class="btn btn-success">SELESAI</button>
+                                            <!-- Tombol penutup -->
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-bottom: 60px; margin-top: 60px">
+                                                <button type="button" class="btn btn-danger" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">KEMBALI</button>
+                                                <button id="siap" type="button" name="tambah" class="btn btn-success" onclick="validating()">SELESAI</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -196,27 +223,24 @@
                 </div>
             </div>
         </div>
-
-        <!-- Pop up konfirmasi hapus dokter -->
-        <div class="modal fade" id="confirmDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bgThird" style="border-radius: 20px;">
-                    <div class="modal-body">
-                        <form action="#" method="post">
-                            <div class="text-center" style="color: white;">
-                                <p style="font-size: 32px"><strong>KONFIRMASI</strong></p>
-                                <p style="font-size: 24px">Apakah anda benar-benar<br>ingin menghapusnya?</p>
-                            </div>
-                            <input type="hidden" name="id">
-                        </form>
+    </div>
+    <!-- Pop up konfirmasi hapus dokter -->
+    <div class="modal fade" id="confirmDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bgThird" style="border-radius: 20px;">
+                <div class="modal-body">
+                    <div class="text-center" style="color: white;">
+                        <p style="font-size: 32px"><strong>KONFIRMASI</strong></p>
+                        <p style="font-size: 24px">Apakah anda benar-benar<br>ingin menghapusnya?</p>
                     </div>
-                    <div class="d-grid mb-4 gap-2 d-md-flex justify-content-md-center">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">BATAL</button>
-                        <button type="submit" class="btn btn-danger">IYA</button>
-                    </div>
+                </div>
+                <div class="d-grid mb-4 gap-2 d-md-flex justify-content-md-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">BATAL</button>
+                    <button type="button" class="btn btn-danger confirmhapus" data-bs-dismiss="modal">IYA</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- End Wrapper -->
 
@@ -225,6 +249,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="../assets/js/scripts.js"></script>
     <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/validate.js"></script>
+    <script type="text/javascript" src="../assets/js/del_doc.js"></script>
 </body>
 
 </html>
