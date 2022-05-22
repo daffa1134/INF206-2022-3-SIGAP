@@ -61,3 +61,7 @@ body {
     color: #edf5e1;
     box-sizing: border-box;
 }
+
+.labels {
+    font-size: 11px;
+}

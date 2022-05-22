@@ -1,7 +1,9 @@
 let map,
+    oldMarker,
     namaApotek = datas.nama_apotek;
-
 let clicked = 0;
+
+saveLokasi();
 
 function initMap() {
     // The map, centered at Banda Aceh
@@ -17,9 +19,9 @@ function initMap() {
     infoWindow = new google.maps.InfoWindow();
 
     // Jika sudah pernah disimpan posisi, langsung arahkan ke tempatnya
-    if ((datas.latitude && datas.longitude) != null) {
+    if ((datas.latitude && datas.longitude) != 0) {
         var pos = { lat: datas.latitude, lng: datas.longitude };
-        var oldMarker = myMarker(map, pos, namaApotek);
+        oldMarker = myMarker(map, pos, namaApotek);
         oldMarker;
         map.setCenter(pos);
     }
@@ -40,15 +42,15 @@ function initMap() {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
+                    // Hapus yang lama
+                    if ((datas.latitude && datas.longitude) != 0) {
+                        oldMarker.setMap(null);
+                    }
                     // Tampilkan yang baru
                     myMarker(map, pos, namaApotek);
                     // Assign nilainya untuk kemudian dikirim
                     datas.longitude = pos.lng;
                     datas.latitude = pos.lat;
-                    // Hapus yang lama
-                    if ((datas.latitude && datas.longitude) != null) {
-                        oldMarker.setMap(null);
-                    }
 
                     if (clicked == 0) {
                         map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(save);
@@ -95,7 +97,7 @@ function myMarker(map, pos, namaApotek) {
 function saveLokasi() {
     $(".simpan").click(function () {
         $.ajax({
-            url: "./Controller/AdminController.php",
+            url: "../web/Controller/AdminController.php",
             method: "post",
             data: {
                 simpan: "lokasi",
@@ -105,7 +107,6 @@ function saveLokasi() {
             },
             success: function (data) {
                 document.location.href = "../web/AdminHome.php";
-                alert("Lokasi berhasil diperbarui!");
             },
         });
     });

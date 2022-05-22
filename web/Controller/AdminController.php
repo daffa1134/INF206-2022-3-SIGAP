@@ -40,6 +40,16 @@ function updateLokasi($id, $long, $lat)
     mysqli_query($koneksi, "UPDATE admins SET longitude = '$long', latitude = '$lat' WHERE id = $id");
 }
 
+function updateProfil($query) {
+    global $koneksi;
+    mysqli_query($koneksi, $query);
+}
+
+function updateDataDokter($query) {
+    global $koneksi;
+    mysqli_query($koneksi, $query);
+}
+
 if (isset($_GET['call'])) {
     $id = $_GET["id"];
     hapusDokter($id);

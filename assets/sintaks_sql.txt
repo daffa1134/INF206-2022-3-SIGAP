@@ -9,6 +9,7 @@ CREATE TABLE users (
     nama_lengkap VARCHAR(50),
     email VARCHAR(30) UNIQUE,
     password VARCHAR(255),
+    no_hp VARCHAR(15) DEFAULT "-",
     link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3011/3011270.png",
     PRIMARY KEY (id)
 );
@@ -21,8 +22,8 @@ CREATE TABLE admins (
     password VARCHAR(255),
     nama_apotek VARCHAR(50),
     link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    longitude VARCHAR(50),
-    latitude VARCHAR(50),
+    longitude VARCHAR(50) DEFAULT 0,
+    latitude VARCHAR(50) DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -92,10 +93,6 @@ INSERT INTO doctors (id_apotek, nama, nip, email, alamat, ruangan, no_hp, spesia
     (8, "Dr. Ahmad", "1234567890123", "ahmad@gmail.com", "Jl. Cut Malahayati No. 17", "Ruang 3", "08123456789", "Penyakit Mulut", "08:00", "16:00"),
     (8, "Dr. Kevin", "1234567890123", "kevin@gmail.com", "Jl. Purnama No. 13", "Ruang 4", "08123456789", "Ortodonti", "08:00", "16:00"),
     (8, "Dr. Nur", "1234567890123", "nur@gmail.com", "Jl. Melati No. 4", "Ruang 5", "08123456789", "Prostodonsia", "08:00", "16:00")
-    (3, "Dr. Ginting", "1234567890123", "sinting@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Uruologi", "08:00", "16:00"),
-    (3, "Dr. Hap", "1234567890123", "hap@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
-    (4, "Dr. Sigit", "1234567890123", "slebew@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
-    (4, "Dr. Putri", "1234567890123", "putri@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00")
 ;
 
 7. Insert data users

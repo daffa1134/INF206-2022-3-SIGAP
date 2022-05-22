@@ -8,3 +8,7 @@ function search($key, $id) {
     return query_banyak($query);
 }
 
+function update($query) {
+    global $koneksi;
+    mysqli_query($koneksi, $query);
+}
