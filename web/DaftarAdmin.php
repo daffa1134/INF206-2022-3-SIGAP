@@ -1,5 +1,13 @@
 <?php
-require 'DaftarController.php';
+session_start();
+
+if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
+    header("Location: ../web/AdminHome.php");
+} elseif (isset($_SESSION['login']) && $_SESSION['is_admin'] == false) {
+    header("Location: ../web/UserHome.php");
+}
+
+require 'Controller/DaftarController.php';
 
 if (isset($_POST['submit'])) {
 	registerAdmin($_POST);
@@ -63,7 +71,7 @@ if (isset($_POST['submit'])) {
 				<button class="btn borderTen" type="submit" name="submit" style="background-color: #ed0b8f; color:white; font-family: Stoke;">Daftar</button>
 			</div>
 			<div class="text-center mt-4" style="color: white;">
-				<p>Sudah punya akun? <a href="./login.php" style="text-decoration: none; color: white"><strong>Login</strong></a></p>
+				<p>Sudah punya akun? <a href="./Login.php" style="text-decoration: none; color: white"><strong>Login</strong></a></p>
 			</div>
 		</form>
 	</div>

@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['is_admin'] === false) {
+    require 'Controller/UserController.php';
+    $user = query("SELECT * FROM users WHERE id = '$_SESSION[id]'");
+} else {
+    session_destroy();
+    header("Location: ../web/Login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,9 +43,9 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                     <a class="btn btn-customized open-menu" href="#" role="button"> <i class="fas fa-bars"></i></a>
                     <div class="dropdown btn-group me-3">
-                        <span class="me-2" style="font-weight: 600;">Firman</span>
+                        <span class="me-2" style="font-weight: 600;"><?= $user["nama_lengkap"] ?></span>
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../assets/img/pp-example.png" alt="photo profile" width="32" height="32" class="rounded-circle" />
+                            <img src="<?= $user["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="./Halaman_edit_profile.php">Profile</a></li>
@@ -62,7 +73,7 @@
                     <a class="scroll-link mb-2" href="./Halaman_Bantuan.php"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./Controller/LoginController.php?logout"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>

@@ -1,5 +1,13 @@
 <?php
-require 'LoginController.php';
+session_start();
+
+if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
+    header("Location: ../web/AdminHome.php");
+} elseif (isset($_SESSION['login']) && $_SESSION['is_admin'] == false) {
+    header("Location: ../web/UserHome.php");
+}
+
+require 'Controller/LoginController.php';
 
 if (isset($_POST['login'])) {
     login($_POST['email'], $_POST['password']);

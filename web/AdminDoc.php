@@ -1,11 +1,17 @@
 <?php
-require 'AdminController.php';
-
-$admins = query("SELECT * FROM admins WHERE id = 1");
-$doctors = query_banyak("SELECT * FROM doctors WHERE id_apotek = 1");
-
-if (isset($_POST['tambah'])) {
-    tambahDokter($_POST);
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
+    require 'Controller/AdminController.php';
+    
+    $admin = query("SELECT * FROM admins WHERE id = '$_SESSION[id]'");
+    $doctors = query_banyak("SELECT * FROM doctors WHERE id_apotek = '$_SESSION[id]'");
+    
+    if (isset($_POST['tambah'])) {
+        tambahDokter($_POST);
+    }
+} else {
+    session_destroy();
+    header("Location: ../web/Login.php");
 }
 
 ?>
@@ -44,9 +50,9 @@ if (isset($_POST['tambah'])) {
                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                     <a class="btn btn-customized open-menu" href="#" role="button"> <i class="fas fa-bars"></i></a>
                     <div class="dropdown btn-group me-3">
-                        <span class="me-2" style="font-weight: 600;"><?= $admins["nama"] ?></span>
+                        <span class="me-2" style="font-weight: 600;"><?= $admin["nama"] ?></span>
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="<?= $admins["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
+                            <img src="<?= $admin["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -77,7 +83,7 @@ if (isset($_POST['tambah'])) {
                     <a class="scroll-link mb-2" href="./Halaman_Bantuan_Admin.php"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./Controller/LoginController.php?logout"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
@@ -86,7 +92,7 @@ if (isset($_POST['tambah'])) {
         <!-- ISi konten -->
 
         <div class="container bg-light mt-3 theFont" style="border-radius: 15px; padding: 30px; font-family: 'Roboto', sans-serif;">
-            <h2>Data Dokter <?= $admins["nama_apotek"] ?></h2>
+            <h2>Data Dokter <?= $admin["nama_apotek"] ?></h2>
             <div class="borderTen" style="background-color: #F2EEEE;">
                 <table class="table text-center table-borderless">
                     <thead>
@@ -106,7 +112,7 @@ if (isset($_POST['tambah'])) {
                                     <td><?= $i ?></td>
                                     <td><?= $doctor["nama"] ?></td>
                                     <td><?= $doctor["ruangan"] ?></td>
-                                    <td><?= $doctor["jam_mulai"] . "-" . $doctor["jam_selesai"] ?></td>
+                                    <td><?= $doctor["jam_mulai"] . " - " . $doctor["jam_selesai"] ?></td>
                                     <td><?= $doctor["spesialis"] ?></td>
                                     <td>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -150,7 +156,7 @@ if (isset($_POST['tambah'])) {
                                     <div class="carousel-item active">
                                         <!-- Isi Form -->
                                         <div id="part1" class="col-10 mx-auto mt-4">
-                                            <input type="hidden" name="id_apotek" value="<?= $admins["id"] ?>">
+                                            <input type="hidden" name="id_apotek" value="<?= $admin["id"] ?>">
                                             <div class="form-floating mb-3">
                                                 <input type="text" class="form-control borderTen" id="namaDokter" name="nama" placeholder="Nama Dokter" required>
                                                 <label for="namaDokter">Nama Dokter</label>
@@ -224,6 +230,7 @@ if (isset($_POST['tambah'])) {
             </div>
         </div>
     </div>
+
     <!-- Pop up konfirmasi hapus dokter -->
     <div class="modal fade" id="confirmDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

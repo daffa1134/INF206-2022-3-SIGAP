@@ -1,11 +1,21 @@
 let map,
     markers = [],
-    namaApotek = ["Apotek Laris", "Apotek Sejahtera", "Apotek Mangga"];
-const apotek = [
-    { lat: 5.562762993736273, lng: 95.32864104874757 },
-    { lat: 5.5607209257230545, lng: 95.32791597386056 },
-    { lat: 5.560118305951542, lng: 95.32770537603727 },
-];
+    idApotek = [],
+    namaApotek = [],
+    apotek = [];
+
+for (let index = 0; index < temp.length; index++) {
+    if ((temp[index].longitude || temp[index].latitude) == null) {
+        continue;
+    }
+    idApotek.push(temp[index].id);
+    namaApotek.push(temp[index].nama_apotek);
+    apotek.push({
+        lat: parseFloat(temp[index].latitude),
+        lng: parseFloat(temp[index].longitude),
+    });
+}
+
 let clicked = 0;
 
 function initMap() {
@@ -81,20 +91,37 @@ function drop() {
     clearMarkers();
 
     for (let i = 0; i < apotek.length; i++) {
-        addMarkerWithTimeout(apotek[i], namaApotek[i], i * 200);
+        addMarkerWithTimeout(apotek[i], namaApotek[i], idApotek[i], i * 200);
     }
 }
 
-function addMarkerWithTimeout(position, namaApotek, timeout) {
+function addMarkerWithTimeout(position, namaApotek, idApotek, timeout) {
+    var marker = new google.maps.Marker({
+        position: position,
+        map,
+        animation: google.maps.Animation.DROP,
+    });
+    
+    const infowindow = new google.maps.InfoWindow({
+        content:
+        '<div>' +
+        '<p style="font-size: 20px;"><strong>' + namaApotek + '</strong></p>' +
+        '<div class="d-grid d-md-flex justify-content-md-end">' +
+        '<a class="btn btn-primary btn-sm" href="./UserDoc.php?idApotek=' + idApotek + '"' + 'role="button">LIHAT</a>' +
+        '</div>' +
+    '</div>',
+    });
+
+    marker.addListener("click", () => {
+        infowindow.open({
+            anchor: marker,
+            map,
+            shouldFocus: false,
+        });
+    });
+
     window.setTimeout(() => {
-        markers.push(
-            new google.maps.Marker({
-                position: position,
-                map,
-                title: namaApotek,
-                animation: google.maps.Animation.DROP,
-            })
-        );
+        markers.push(marker);
     }, timeout);
 }
 

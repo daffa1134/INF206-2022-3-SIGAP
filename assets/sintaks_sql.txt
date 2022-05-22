@@ -10,7 +10,6 @@ CREATE TABLE users (
     email VARCHAR(30) UNIQUE,
     password VARCHAR(255),
     link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3011/3011270.png",
-    is_admin INT(1) DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -20,11 +19,10 @@ CREATE TABLE admins (
     nama VARCHAR(50),
     email VARCHAR(30) UNIQUE,
     password VARCHAR(255),
-    is_admin INT(1) DEFAULT 1,
     nama_apotek VARCHAR(50),
     link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    longitude VARCHAR(20),
-    latitude VARCHAR(20),
+    longitude VARCHAR(50),
+    latitude VARCHAR(50),
     PRIMARY KEY (id)
 );
 
@@ -48,10 +46,10 @@ CREATE TABLE doctors (
 
 5. Insert data admin
 INSERT INTO admins (nama, email, password, nama_apotek) VALUES
-    ("Yuda", "yuda@gmail.com", "12345678", "Apotek Laris"),
-    ("Dey", "dey@gmail.com", "12345678", "Apotek Rasi"),
-    ("Arip", "arip@gmail.com", "12345678", "Apotek Sejahtera"),
-    ("Alan", "alan@gmail.com", "12345678", "Apotek Sehat")
+    ("Yuda", "yuda@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Laris"),
+    ("Dey", "dey@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Rasi"),
+    ("Arip", "arip@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Sejahtera"),
+    ("Alan", "alan@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Sehat")
 ;
 
 6. Insert data dokter
@@ -69,7 +67,7 @@ INSERT INTO doctors (id_apotek, nama, nip, email, alamat, ruangan, no_hp, spesia
 
 7. Insert data users
 INSERT INTO users (nama_lengkap, email, password) VALUES
-    ("Agung", "agung@gmail.com", "12345678"),
-    ("Dudul", "dudul@yahool.com", "12345678"),
-    ("Andre", "dre@gmail.com", "12345678")
+    ("Agung", "agung@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy"),
+    ("Dudul", "dudul@yahool.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy"),
+    ("Andre", "dre@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy")
 ;

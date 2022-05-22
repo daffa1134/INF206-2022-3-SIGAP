@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
+    require 'Controller/AdminController.php';
+    $admin = query("SELECT * FROM admins WHERE id = '$_SESSION[id]'");
+} else {
+    session_destroy();
+    header("Location: ../web/Login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +76,7 @@
                     <a class="scroll-link mb-2" href="./Halaman_Bantuan_Admin.php"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./Controller/LoginController.php?logout"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
