@@ -22,6 +22,13 @@ body {
     outline: 0;
 }
 
+.searchbtn {
+    outline: none;
+    border: none;
+    background: transparent;
+    margin-left: -40px;
+}
+
 .font-1 {
     font-family: "Ramaraja", serif;
     color: #edf5e1;
@@ -46,33 +53,11 @@ body {
 }
 
 .box-login {
-    width: 400px;
+    width: 500px;
     height: 400px;
     background-color: #05386b;
     border-radius: 15px;
     padding: 15px;
     color: #edf5e1;
     box-sizing: border-box;
-}
-
-.box-login h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.input-control {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-bottom: 15px;
-    box-sizing: border-box;
-}
-
-.beton {
-    background-color: #ed0b8f;
-    padding: 8px 15px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
 }

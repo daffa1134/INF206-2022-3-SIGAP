@@ -1,6 +1,6 @@
 let map,
-    namaApotek = ["Apotek Laris"];
-const apotek = [{ lat: 5.562762993736273, lng: 95.32864104874757 }];
+    namaApotek = datas.nama_apotek;
+
 let clicked = 0;
 
 function initMap() {
@@ -15,6 +15,14 @@ function initMap() {
     });
 
     infoWindow = new google.maps.InfoWindow();
+
+    // Jika sudah pernah disimpan posisi, langsung arahkan ke tempatnya
+    if ((datas.latitude && datas.longitude) != null) {
+        var pos = { lat: datas.latitude, lng: datas.longitude };
+        var oldMarker = myMarker(map, pos, namaApotek);
+        oldMarker;
+        map.setCenter(pos);
+    }
 
     // Variabel untuk menyimpan lokasi
     save = document.getElementById("save");
@@ -32,13 +40,19 @@ function initMap() {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
-                    myMarker(map, pos, namaApotek[0]);
+                    // Tampilkan yang baru
+                    myMarker(map, pos, namaApotek);
+                    // Assign nilainya untuk kemudian dikirim
+                    datas.longitude = pos.lng;
+                    datas.latitude = pos.lat;
+                    // Hapus yang lama
+                    if ((datas.latitude && datas.longitude) != null) {
+                        oldMarker.setMap(null);
+                    }
+
                     if (clicked == 0) {
                         map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(save);
                     }
-                    save.addEventListener("click", () => {
-                        alert("Save this location?");
-                    });
                     map.setCenter(pos);
                     clicked = 1;
                 },
@@ -73,5 +87,26 @@ function myMarker(map, pos, namaApotek) {
     defMarker.addListener("click", () => {
         infoWindow.setContent(namaApotek);
         infoWindow.open(map, defMarker);
+    });
+
+    return defMarker;
+}
+
+function saveLokasi() {
+    $(".simpan").click(function () {
+        $.ajax({
+            url: "./Controller/AdminController.php",
+            method: "post",
+            data: {
+                simpan: "lokasi",
+                id: datas.id,
+                latitude: datas.latitude,
+                longitude: datas.longitude,
+            },
+            success: function (data) {
+                document.location.href = "../web/AdminHome.php";
+                alert("Lokasi berhasil diperbarui!");
+            },
+        });
     });
 }
