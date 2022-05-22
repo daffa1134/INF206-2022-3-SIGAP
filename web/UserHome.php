@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['is_admin'] === false) {
+    require 'Controller/UserController.php';
+    $user = query("SELECT * FROM users WHERE id = '$_SESSION[id]'");
+} else {
+    session_destroy();
+    header("Location: ../web/Login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,9 +42,9 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                     <a class="btn btn-customized open-menu" href="#" role="button"> <i class="fas fa-bars"></i></a>
                     <div class="dropdown btn-group me-3">
-                        <span class="me-2" style="font-weight: 600;">Firman</span>
+                        <span class="me-2" style="font-weight: 600;"><?= $user["nama_lengkap"] ?></span>
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../assets/img/pp-example.png" alt="photo profile" width="32" height="32" class="rounded-circle" />
+                            <img src="<?= $user["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="./Halaman_edit_profile.php">Profile</a></li>
@@ -61,7 +72,7 @@
                     <a class="scroll-link mb-2" href="./Halaman_Bantuan.php"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./Controller/LoginController.php?logout"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
@@ -69,7 +80,9 @@
 
         <!-- ISi konten -->
         <div class="container-fluid w-auto h-auto">
+            <!-- Tombol Temukan Apotek -->
             <button type="button" class="btn" id="search" title="Click to find apotek" style="margin-left: 8px;">Temukan Apotek</button>
+            <!-- Tombol untuk melihat posisi sekarang -->
             <button type="button" class="btn" id="find" title="Click to find your location" style="margin-right: 8px;">
                 <img src="../assets/ico/loc.png" alt="Find Location" style="width: 40px;">
             </button>
@@ -80,8 +93,11 @@
     <!-- Javascript -->
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSSO6fRI2XwFLFnHJqjYLBwPiwWkuu48&callback=initMap"></script>
     <script src="../assets/js/scripts.js"></script>
+    <script type="text/javascript">
+        var temp = <?= json_encode($apotekInfo); ?>;
+    </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSSO6fRI2XwFLFnHJqjYLBwPiwWkuu48&callback=initMap"></script>
     <script src="../assets/js/userMap.js"></script>
 
 </body>

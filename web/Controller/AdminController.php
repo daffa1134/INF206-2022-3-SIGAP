@@ -1,9 +1,6 @@
 <?php
 require "Koneksi.php";
 
-$admins = query("SELECT * FROM admins WHERE id = 1");
-$doctors = query_banyak("SELECT * FROM doctors WHERE id_apotek = 1");
-
 function tambahDokter()
 {
     global $koneksi;
@@ -37,7 +34,21 @@ function hapusDokter($id)
     mysqli_query($koneksi, "DELETE FROM doctors WHERE id = $id");
 }
 
+function updateLokasi($id, $long, $lat)
+{
+    global $koneksi;
+    mysqli_query($koneksi, "UPDATE admins SET longitude = '$long', latitude = '$lat' WHERE id = $id");
+}
+
 if (isset($_GET['call'])) {
     $id = $_GET["id"];
     hapusDokter($id);
+}
+
+if (isset($_POST['simpan'])) {
+    $id = $_POST['id'];
+    $long = $_POST['longitude'];
+    $lat = $_POST['latitude'];
+
+    updateLokasi($id, $long, $lat);
 }

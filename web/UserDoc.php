@@ -1,10 +1,22 @@
 <?php
-require 'UserController.php';
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['is_admin'] === false) {
+    require 'Controller/UserController.php';
+    $user = query("SELECT * FROM users WHERE id = '$_SESSION[id]'");
+    if (isset($_GET["idApotek"])) {
+        $id = $_GET["idApotek"];
+        $apotekName = query("SELECT nama_apotek FROM admins WHERE id = '$id'");
+        $apotekName = $apotekName['nama_apotek'];
+        $datas = query_banyak("SELECT * FROM doctors WHERE id_apotek = '$id' ORDER BY nama");
 
-if (isset($_POST["cari"])) {
-    $doctors = search($_POST["keyword"]);
+        if (isset($_POST["cari"])) {
+            $datas = search($_POST["keyword"], $id);
+        }
+    }
+} else {
+    session_destroy();
+    header("Location: ../web/Login.php");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +54,9 @@ if (isset($_POST["cari"])) {
                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                     <a class="btn btn-customized open-menu" href="#" role="button"> <i class="fas fa-bars"></i></a>
                     <div class="dropdown btn-group me-3">
-                        <span class="me-2" style="font-weight: 600;"><?= $users["nama_lengkap"] ?></span>
+                        <span class="me-2" style="font-weight: 600;"><?= $user["nama_lengkap"] ?></span>
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="<?= $users["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
+                            <img src="<?= $user["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -72,7 +84,7 @@ if (isset($_POST["cari"])) {
                     <a class="scroll-link mb-2" href="./Halaman_Bantuan.php"><i class="fas fa-question-circle"></i> Bantuan</a>
                 </li>
                 <li>
-                    <a class="scroll-link mb-2" href="./login.php"><i class="fas fa-power-off"></i> Keluar</a>
+                    <a class="scroll-link mb-2" href="./Controller/LoginController.php?logout"><i class="fas fa-power-off"></i> Keluar</a>
                 </li>
             </ul>
         </nav>
@@ -82,7 +94,7 @@ if (isset($_POST["cari"])) {
         <div class="container bg-light mt-3 theFont" style="border-radius: 15px; padding: 30px; font-family: 'Roboto', sans-serif;">
             <div class="row justify-content-between">
                 <div class="col">
-                    <h2><?= "Data" ?></h2>
+                    <h2><?= $apotekName ?></h2>
                 </div>
                 <div class="col-3">
                     <form action="" method="post" class="d-flex">
@@ -105,15 +117,15 @@ if (isset($_POST["cari"])) {
                     </thead>
 
                     <tbody>
-                        <?php if (sizeof($doctors) > 0) : ?>
+                        <?php if (sizeof($datas) > 0) : ?>
                             <?php $i = 1; ?>
-                            <?php foreach ($doctors as $doctor) : ?>
-                                <tr id="<?= $doctor['id'] ?>">
+                            <?php foreach ($datas as $data) : ?>
+                                <tr id="<?= $data['id'] ?>">
                                     <td><?= $i ?></td>
-                                    <td><img src="<?= $doctor["link_pp"] ?>" alt="foto_dokter" style="width: 200px;"></td>
-                                    <td><?= $doctor["nama"] ?></td>
-                                    <td><?= $doctor["jam_mulai"] . "-" . $doctor["jam_selesai"] ?></td>
-                                    <td><?= $doctor["spesialis"] ?></td>
+                                    <td><img src="<?= $data["link_pp"] ?>" alt="foto_dokter" style="width: 200px;"></td>
+                                    <td><?= $data["nama"] ?></td>
+                                    <td><?= $data["jam_mulai"] . " - " . $data["jam_selesai"] ?></td>
+                                    <td><?= $data["spesialis"] ?></td>
                                     <td>
                                         <button class="btn btn-primary" role="button">Lihat</button>
                                     </td>

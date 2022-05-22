@@ -1,8 +1,7 @@
 <?php
-require 'Koneksi.php';
-if (isset($_POST['test'])) {
-    var_dump($_POST);
-}
+require 'Controller/AdminController.php';
+$admins = query_banyak("SELECT * FROM admins");
+
 ?>
 
 <!DOCTYPE html>
@@ -27,16 +26,18 @@ if (isset($_POST['test'])) {
 </head>
 
 <body>
-    <form action="" method="post">
-        <button type="button" id="noticeme" name="test" onclick="ambatukam()">Click Me</button>
-    </form>
 
-<script>
-    function ambatukam() {
-        botom = document.getElementById("noticeme");
-        botom.setAttribute("type", "submit");
-    }
-</script>
+    <div>
+        <p style="font-size: 20px;"><strong>Apotek Laris</strong></p>
+        <div class="d-grid d-md-flex justify-content-md-end">
+        <a class="btn btn-primary btn-sm" href="./UserDoc.php?idApotek=" role="button">LIHAT</a>
+        </div>
+    </div>
+
+    
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./te.js"></script>
 </body>
 
 </html>
