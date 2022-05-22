@@ -9,6 +9,7 @@ CREATE TABLE users (
     nama_lengkap VARCHAR(50),
     email VARCHAR(30) UNIQUE,
     password VARCHAR(255),
+    no_hp VARCHAR(15) DEFAULT "-",
     link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3011/3011270.png",
     PRIMARY KEY (id)
 );
@@ -21,8 +22,8 @@ CREATE TABLE admins (
     password VARCHAR(255),
     nama_apotek VARCHAR(50),
     link_pp TEXT DEFAULT "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    longitude VARCHAR(50),
-    latitude VARCHAR(50),
+    longitude VARCHAR(50) DEFAULT 0,
+    latitude VARCHAR(50) DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -49,20 +50,49 @@ INSERT INTO admins (nama, email, password, nama_apotek) VALUES
     ("Yuda", "yuda@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Laris"),
     ("Dey", "dey@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Rasi"),
     ("Arip", "arip@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Sejahtera"),
-    ("Alan", "alan@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Sehat")
+    ("Alan", "alan@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Sehat"),
+    ("Sean", "sean@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Baroqah"),
+    ("Jaden", "jaden@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Klinik Cahaya Bunda"),
+    ("Budi", "budi@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Apotek Putroe Meuraxa"),
+    ("Ami", "ami@gmail.com", "$2y$10$4Z9Q5CDcRARcMlQWX6wJaOa7Pssf1YlY1iBcQJULS8F62AXUUYTwy", "Klinik Dental Care")
 ;
 
 6. Insert data dokter
 INSERT INTO doctors (id_apotek, nama, nip, email, alamat, ruangan, no_hp, spesialis, jam_mulai, jam_selesai) VALUES
     (1, "Dr. Asep", "1234567890123", "asep@gmail.com", "Jl. Asep No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
-    (1, "Dr. Budi", "1234567890123", "budi@gmail.com", "Jl. Budi No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
-    (1, "Dr. Caca", "1234567890123", "caca@gmail.com", "Jl. Caca No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (1, "Dr. Budi", "1234567890123", "budi@gmail.com", "Jl. Budi No. 1", "Ruang 2", "08123456789", "Jantung", "08:00", "16:00"),
+    (1, "Dr. Btari", "1234567890123", "btari@gmail.com", "Jl. Kasuari No. 2", "Ruang 3", "08123456789", "Ortopedi", "08:00", "16:00"),
+    (1, "Dr. Caca", "1234567890123", "caca@gmail.com", "Jl. Caca No. 1", "Ruang 4", "08123456789", "Jantung", "08:00", "16:00"),
     (2, "Dr. Dede", "1234567890123", "dede@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
-    (2, "Dr. Eka", "1234567890123", "eka@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Uruologi", "08:00", "16:00"),
+    (2, "Dr. Eka", "1234567890123", "eka@gmail.com", "Jl. Dede No. 1", "Ruang 2", "08123456789", "Uruologi", "08:00", "16:00"),
+    (2, "Dr. Maulvi", "1234567890123", "maulvi@gmail.com", "Jl. Dede No. 3", "Ruang 3", "08123456789", "THT", "08:00", "16:00"),
+    (2, "Dr. Asyraf", "1234567890123", "asyraf@gmail.com", "Jl. Dede No. 7", "Ruang 4", "08123456789", "Penyakit Dalam", "08:00", "16:00"),
+    (2, "Dr. Hamzah", "1234567890123", "hamzah@gmail.com", "Jl. Bahtera No. 20", "Ruang 5", "08123456789", "Ortopedi", "08:00", "16:00"),
     (3, "Dr. Ginting", "1234567890123", "sinting@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Uruologi", "08:00", "16:00"),
-    (3, "Dr. Hap", "1234567890123", "hap@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
+    (3, "Dr. Hap", "1234567890123", "hap@gmail.com", "Jl. Dede No. 1", "Ruang 2", "08123456789", "Jantung", "08:00", "16:00"),
+    (3, "Dr. Fatih", "1234567890123", "fatih@gmail.com", "Jl. Melawai No. 6", "Ruang 3", "08123456789", "Saraf", "08:00", "16:00"),
+    (3, "Dr. Nurul", "1234567890123", "nurul@gmail.com", "Jl. Mawar No. 25", "Ruang 4", "08123456789", "Anak", "08:00", "16:00"),
     (4, "Dr. Sigit", "1234567890123", "slebew@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00"),
-    (4, "Dr. Putri", "1234567890123", "putri@gmail.com", "Jl. Dede No. 1", "Ruang 1", "08123456789", "Jantung", "08:00", "16:00")
+    (4, "Dr. Putri", "1234567890123", "putri@gmail.com", "Jl. Dede No. 1", "Ruang 2", "08123456789", "Jantung", "08:00", "16:00"),
+    (4, "Dr. Razaq", "1234567890123", "razaq@gmail.com", "Jl. Pahlawan No. 5", "Ruang 3", "08123456789", "Kandungan", "08:00", "16:00"),
+    (4, "Dr. Purnama", "1234567890123", "purnama@gmail.com", "Jl. Melawai No. 8", "Ruang 4", "08123456789", "Mata", "08:00", "16:00"),
+    (5, "Dr. Luna", "1234567890123", "luna@gmail.com", "Jl. Tulip No. 9", "Ruang 1", "08123456789", "Ortopedi", "08:00", "16:00"),
+    (5, "Dr. Mulan", "1234567890123", "mulan@gmail.com", "Jl. Pahlawan No. 4", "Ruang 2", "08123456789", "Anak", "08:00", "16:00"),
+    (5, "Dr. Ren", "1234567890123", "ren@gmail.com", "Jl. Purnama No. 7", "Ruang 3", "08123456789", "Penyakit Dalam", "08:00", "16:00"),
+    (5, "Dr. Jasmine", "1234567890123", "jasmine@gmail.com", "Jl. Merak No. 16", "Ruang 4", "08123456789", "Saraf", "08:00", "16:00"),
+    (6, "Dr. Haydar", "1234567890123", "haydar@gmail.com", "Jl. Solo No. 23", "Ruang 1", "08123456789", "Saraf", "08:00", "16:00"),
+    (6, "Dr. Sarah", "1234567890123", "sarah@gmail.com", "Jl. Tulip No. 18", "Ruang 2", "08123456789", "Kandungan", "08:00", "16:00"),
+    (6, "Dr. Zifa", "1234567890123", "zifa@gmail.com", "Jl. Mekar No. 17", "Ruang 3", "08123456789", "Kulit dan Kelamin", "08:00", "16:00"),
+    (6, "Dr. Zefanya", "1234567890123", "zefanya@gmail.com", "Jl. Sabit No. 10", "Ruang 4", "08123456789", "Penyakit Dalam", "08:00", "16:00"),
+    (7, "Dr. Irfan", "1234567890123", "irfan@gmail.com", "Jl. Bahtera No. 6", "Ruang 1", "08123456789", "THT", "08:00", "16:00"),
+    (7, "Dr. Faris", "1234567890123", "faris@gmail.com", "Jl. Pemuda No. 3", "Ruang 2", "08123456789", "Mata", "08:00", "16:00"),
+    (7, "Dr. Lina", "1234567890123", "lina@gmail.com", "Jl. Tgk. Yusuf No. 8", "Ruang 3", "08123456789", "Penyakit Dalam", "08:00", "16:00"),
+    (7, "Dr. Zain", "1234567890123", "zain@gmail.com", "Jl. Pemuda No. 17", "Ruang 4", "08123456789", "Ortopedi", "08:00", "16:00"),
+    (8, "Dr. Saiful", "1234567890123", "saiful@gmail.com", "Jl. Mulia No. 11", "Ruang 1", "08123456789", "Bedah Mulut", "08:00", "16:00"),
+    (8, "Dr. Swan", "1234567890123", "swan@gmail.com", "Jl. Menara No. 20", "Ruang 2", "08123456789", "Gigi Anak", "08:00", "16:00"),
+    (8, "Dr. Ahmad", "1234567890123", "ahmad@gmail.com", "Jl. Cut Malahayati No. 17", "Ruang 3", "08123456789", "Penyakit Mulut", "08:00", "16:00"),
+    (8, "Dr. Kevin", "1234567890123", "kevin@gmail.com", "Jl. Purnama No. 13", "Ruang 4", "08123456789", "Ortodonti", "08:00", "16:00"),
+    (8, "Dr. Nur", "1234567890123", "nur@gmail.com", "Jl. Melati No. 4", "Ruang 5", "08123456789", "Prostodonsia", "08:00", "16:00")
 ;
 
 7. Insert data users

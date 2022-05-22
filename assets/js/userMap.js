@@ -1,22 +1,23 @@
 let map,
+    tempDist,
     markers = [],
     idApotek = [],
     namaApotek = [],
     apotek = [];
 
-for (let index = 0; index < temp.length; index++) {
-    if ((temp[index].longitude || temp[index].latitude) == null) {
-        continue;
-    }
-    idApotek.push(temp[index].id);
-    namaApotek.push(temp[index].nama_apotek);
-    apotek.push({
-        lat: parseFloat(temp[index].latitude),
-        lng: parseFloat(temp[index].longitude),
-    });
-}
-
 let clicked = 0;
+
+// Fungsi untuk menghitung jarak antara 2 lokasi
+function calculateDistance(myPos, destPos) {
+    var R = 6371.0710; // Radius of the Earth in km
+    var rlat1 = myPos.lat * (Math.PI / 180); // Convert degrees to radians
+    var rlat2 = destPos.lat * (Math.PI / 180); // Convert degrees to radians
+    var difflat = rlat2 - rlat1; // Radian difference (latitudes)
+    var difflon = (destPos.lng - myPos.lng) * (Math.PI / 180); // Radian difference (longitudes)
+
+    var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat / 2) * Math.sin(difflat / 2) + Math.cos(rlat1) * Math.cos(rlat2) * Math.sin(difflon / 2) * Math.sin(difflon / 2)));
+    return d;
+}
 
 function initMap() {
     // The map, centered at Banda Aceh
@@ -47,14 +48,37 @@ function initMap() {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
+
+                    map.setCenter(pos);
+
                     myMarker(map, pos);
                     if (clicked == 0) {
                         map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(search);
                     }
+                    // Tombol search ditekan
                     search.addEventListener("click", () => {
+                        // Dibandingkan dengan lokasi apotek dari database
+                        for (let index = 0; index < temp.length; index++) {
+                            if ((temp[index].longitude || temp[index].latitude) == null) {
+                                continue;
+                            }
+                            tempDist = { lat: temp[index].latitude, lng: temp[index].longitude };
+                            // Dicari lokasi apotek yang kurang dari 10 km dari posisi anda
+                            if (calculateDistance(pos, tempDist) <= 10) {
+                                idApotek.push(temp[index].id);
+                                namaApotek.push(temp[index].nama_apotek);
+                                apotek.push({
+                                    lat: parseFloat(temp[index].latitude),
+                                    lng: parseFloat(temp[index].longitude),
+                                });
+                            }
+                        }
+                        if (apotek == 0) {
+                            alert("Tidak ada apotek yang ditemukan");
+                        }
                         drop();
                     });
-                    map.setCenter(pos);
+
                     clicked = 1;
                 },
                 () => {
@@ -101,15 +125,20 @@ function addMarkerWithTimeout(position, namaApotek, idApotek, timeout) {
         map,
         animation: google.maps.Animation.DROP,
     });
-    
+
     const infowindow = new google.maps.InfoWindow({
         content:
-        '<div>' +
-        '<p style="font-size: 20px;"><strong>' + namaApotek + '</strong></p>' +
-        '<div class="d-grid d-md-flex justify-content-md-end">' +
-        '<a class="btn btn-primary btn-sm" href="./UserDoc.php?idApotek=' + idApotek + '"' + 'role="button">LIHAT</a>' +
-        '</div>' +
-    '</div>',
+            "<div>" +
+            '<p style="font-size: 20px;"><strong>' +
+            namaApotek +
+            "</strong></p>" +
+            '<div class="d-grid d-md-flex justify-content-md-end">' +
+            '<a class="btn btn-primary btn-sm" href="./UserDoc.php?idApotek=' +
+            idApotek +
+            '"' +
+            'role="button">LIHAT</a>' +
+            "</div>" +
+            "</div>",
     });
 
     marker.addListener("click", () => {

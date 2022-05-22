@@ -55,7 +55,7 @@ if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
                             <img src="<?= $admin["link_pp"] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="./Update_Profil_Admin.php">Profile</a></li>
                         </ul>
                     </div>
                 </div>
@@ -116,8 +116,8 @@ if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
                                     <td><?= $doctor["spesialis"] ?></td>
                                     <td>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                            <button class="btn btn-primary" role="button">Edit</button>
-                                            <button class="btn btn-danger hapus" role="button" data-bs-toggle="modal" data-bs-target="#confirmDelete">Hapus</button>
+                                            <a class="btn btn-primary" href="./EditDoc.php?id=<?= $doctor['id'] ?>" role="button">Edit</a>
+                                            <button class="btn btn-danger hapus" type="button" data-bs-toggle="modal" data-bs-target="#confirmDelete">Hapus</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -134,7 +134,7 @@ if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
             <!-- Tombol tambah dokter -->
             <div class="row justify-content-end">
                 <div class="text-end">
-                    <button class="btn btn-success" role="button" data-bs-toggle="modal" data-bs-target="#modalAddDokter">Tambah</button>
+                    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalAddDokter">Tambah</button>
                 </div>
             </div>
         </div>

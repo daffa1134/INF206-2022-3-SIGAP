@@ -43,12 +43,12 @@ if (isset($_SESSION['login']) && $_SESSION['is_admin']) {
                 <div class="d-flex flex-wrap align-items-center justify-content-between">
                     <a class="btn btn-customized open-menu" href="#" role="button"> <i class="fas fa-bars"></i></a>
                     <div class="dropdown btn-group me-3">
-                        <span class="me-2" style="font-weight: 600;">Firman</span>
+                        <span class="me-2" style="font-weight: 600;"><?= $admin["nama"] ?></span>
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../assets/img/pp-example.png" alt="photo profile" width="32" height="32" class="rounded-circle" />
+                            <img src="<?= $admin['link_pp'] ?>" alt="photo profile" width="32" height="32" class="rounded-circle" />
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="./Update_Profil_Admin.php">Profile</a></li>
                         </ul>
                     </div>
                 </div>
