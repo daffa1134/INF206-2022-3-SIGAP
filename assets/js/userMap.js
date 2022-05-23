@@ -64,7 +64,7 @@ function initMap() {
                             }
                             tempDist = { lat: temp[index].latitude, lng: temp[index].longitude };
                             // Dicari lokasi apotek yang kurang dari 10 km dari posisi anda
-                            if (calculateDistance(pos, tempDist) <= 10) {
+                            if (calculateDistance(pos, tempDist) <= 5) {
                                 idApotek.push(temp[index].id);
                                 namaApotek.push(temp[index].nama_apotek);
                                 apotek.push({
