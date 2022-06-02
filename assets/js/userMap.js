@@ -63,7 +63,7 @@ function initMap() {
                                 continue;
                             }
                             tempDist = { lat: temp[index].latitude, lng: temp[index].longitude };
-                            // Dicari lokasi apotek yang kurang dari 10 km dari posisi anda
+                            // Dicari lokasi apotek yang kurang dari 5 km dari posisi anda
                             if (calculateDistance(pos, tempDist) <= 5) {
                                 idApotek.push(temp[index].id);
                                 namaApotek.push(temp[index].nama_apotek);
@@ -136,7 +136,7 @@ function addMarkerWithTimeout(position, namaApotek, idApotek, timeout) {
             '<a class="btn btn-primary btn-sm" href="./UserDoc.php?idApotek=' +
             idApotek +
             '"' +
-            'role="button">LIHAT</a>' +
+            'role="button" target="_blank">LIHAT</a>' +
             "</div>" +
             "</div>",
     });
